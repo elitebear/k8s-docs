@@ -78,7 +78,7 @@ microk8s
 Available subcommands are:
 	add-node # 
 	cilium # Another CNI
-	config
+	config # kubeconfig'i ekrana basar. Alınıp dışarıdan kubectl ile bağlanmak için kullanılabilir.
 	ctr # containerd client
 	dashboard-proxy
 	dbctl # backup and restore the Kubernetes datastore.
