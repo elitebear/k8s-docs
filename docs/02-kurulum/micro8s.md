@@ -20,11 +20,12 @@ Canonical firmasının Kubernetes dağıtımıdır.
 # kurulmasını bekliyoruz.
 microk8s status --wait-ready
 
+# normal kubectl kurulumu
+snap install microk8s --classic
 
-alias kubectl="microk8s kubectl"
-alias k="kubectl"
+microk8s config > $HOME/.kube/config
 
-alias m="microk8s"
+kubectl get node
 
 ```
 
@@ -105,8 +106,11 @@ the microk8s project.
 
 # istediğimiz servisleri etkinleştiriyoruz
 
+# ideal ortamda çalışması gerekir 
+microk8s enable dashboard dns 
+
 # registry: kendi registryniz olsun isterseniz. 
-microk8s enable dashboard dns registry
+microk8s enable registry
 
 
 # dashboarda nodeport üzerinden erişmek için
@@ -118,11 +122,10 @@ k describe svc kubernetes-dashboard -n kube-system | grep NodePort
 
 
 # dashboarda erişim için aşağıdaki komuttan çıkan token'ı kullanıyoruz.
-{% raw %}
-kubectl -n kube-system get secret $(kubectl -n kube-system get sa default -o jsonpath="{.secrets[0].name}") -o go-template="{{ .data.token | base64decode }}" && echo
-{% endraw %}
-```
+# supuruser token
+kubectl -n kube-system describe secret microk8s-dashboard-token
 
+```
 
 #### yeni node eklemek
 
@@ -131,7 +134,5 @@ kubectl -n kube-system get secret $(kubectl -n kube-system get sa default -o jso
 microk8s add-node
 
 # çıkan komutu diğer nodlarda microk8s kurduktan sonra çalıştırın
-
-
 
 ```
