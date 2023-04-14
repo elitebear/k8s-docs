@@ -29,46 +29,39 @@ kubectl get node
 
 ```
 
-#### Kullanılabilir ek hizmetler. 
+#### Kullanılabilir ek hizmetler.  (her sürümde değişiyor. )
 
 ```
-m status
- 
+microk8s status
 microk8s is running
 high-availability: no
   datastore master nodes: 127.0.0.1:19001
   datastore standby nodes: none
 addons:
   enabled:
-    ha-cluster           # Configure high availability on the current node
+    dashboard            # (core) The Kubernetes dashboard
+    dns                  # (core) CoreDNS
+    ha-cluster           # (core) Configure high availability on the current node
+    helm                 # (core) Helm - the package manager for Kubernetes
+    helm3                # (core) Helm 3 - the package manager for Kubernetes
+    hostpath-storage     # (core) Storage class; allocates storage from host directory
+    metrics-server       # (core) K8s Metrics Server for API access to service metrics
+    observability        # (core) A lightweight observability stack for logs, traces and metrics
+    storage              # (core) Alias to hostpath-storage add-on, deprecated
   disabled:
-    ambassador           # Ambassador API Gateway and Ingress
-    cilium               # SDN, fast with full network policy
-    dashboard            # The Kubernetes dashboard
-    dns                  # CoreDNS
-    fluentd              # Elasticsearch-Fluentd-Kibana logging and monitoring
-    gpu                  # Automatic enablement of Nvidia CUDA
-    helm                 # Helm 2 - the package manager for Kubernetes
-    helm3                # Helm 3 - Kubernetes package manager
-    host-access          # Allow Pods connecting to Host services smoothly
-    ingress              # Ingress controller for external access
-    istio                # Core Istio service mesh services
-    jaeger               # Kubernetes Jaeger operator with its simple config
-    keda                 # Kubernetes-based Event Driven Autoscaling
-    knative              # The Knative framework on Kubernetes.
-    kubeflow             # Kubeflow for easy ML deployments
-    linkerd              # Linkerd is a service mesh for Kubernetes and other frameworks
-    metallb              # Loadbalancer for your Kubernetes cluster
-    metrics-server       # K8s Metrics Server for API access to service metrics
-    multus               # Multus CNI enables attaching multiple network interfaces to pods
-    openebs              # OpenEBS is the open-source storage solution for Kubernetes
-    openfaas             # openfaas serverless framework
-    portainer            # Portainer UI for your Kubernetes cluster
-    prometheus           # Prometheus operator for monitoring and logging
-    rbac                 # Role-Based Access Control for authorisation
-    registry             # Private image registry exposed on localhost:32000
-    storage              # Storage class; allocates storage from host directory
-    traefik              # traefik Ingress controller for external access
+    cert-manager         # (core) Cloud native certificate management
+    community            # (core) The community addons repository
+    gpu                  # (core) Automatic enablement of Nvidia CUDA
+    host-access          # (core) Allow Pods connecting to Host services smoothly
+    ingress              # (core) Ingress controller for external access
+    kube-ovn             # (core) An advanced network fabric for Kubernetes
+    mayastor             # (core) OpenEBS MayaStor
+    metallb              # (core) Loadbalancer for your Kubernetes cluster
+    minio                # (core) MinIO object storage
+    prometheus           # (core) Prometheus operator for monitoring and logging
+    rbac                 # (core) Role-Based Access Control for authorisation
+    registry             # (core) Private image registry exposed on localhost:32000
+
 ```
 
 ####  komutlar
