@@ -22,7 +22,10 @@ parent: Önemli Kaynaklar
 
 **Probe'lar konfigüre edilebilirdirler:**
 
-- **initialDelaySeconds:** Ne kadar süre sonra health check probe'u test edilmeye başlanacak.
+- **initialDelaySeconds:**
+Kubernetes liveness ve readiness kontrollerinde `initialDelaySeconds` (başlangıç gecikme süresi) için varsayılan değer, 0 saniyedir. Eğer açıkça `initialDelaySeconds` alanını belirtmezseniz, Kubernetes bunu varsayılan olarak 0 kabul eder.
+
+`initialDelaySeconds`'ı 0 olarak ayarlamak, konteyner başlatıldığında veya yeniden başlatıldığında hemen kontrolün çalışmaya başlayacağı anlamına gelir. Eğer konteynerin tamamen başlatılması ve çalışmaya hazır olması için bir gecikme süresi gerekiyorsa, pozitif bir değer belirtmelisiniz. Bu durumda, başlangıç gecikme süresini ayarlayarak uygulamanızın konteynerin hazır olmasını bekleme süresini belirleyebilirsiniz.
 - **periodSeconds:** Ne kadar süre aralıklarıyla test için bu istekler iletilecek.
 - **timeoutSeconds:** Ne kadar süre isteğin cevabı beklenecek.
 - **successThreshold:** Kaç tane başarılı istekten sonra başarılı sayılacak.
