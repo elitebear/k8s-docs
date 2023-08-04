@@ -7,6 +7,13 @@ parent: Önemli Kaynaklar
 
 # Canlılık ve Hazırlık
 
+
+## Startup
+* Herhangi bir sebeple yavaş ayağa kalkan Pod'ların başlama durumunu kontrol için Startup propları kullanılır. 
+* Startup proplarının kontrol yaptığı sürede liveness ve readiness propları çalışmaz.
+
+Bu probe, uygulama konteyneri başlatıldıktan sonra hemen çalışmaya başlar. Amacı, uygulama başlatıldıktan sonra tamamen hazır hale gelip gelmediğini kontrol etmektir. Eğer `startupProbe` başarısız olursa, Kubernetes başlatma işlemini durdurabilir ve konteyneri yeniden başlatabilir. `initialDelaySeconds`, `periodSeconds` ve `failureThreshold` gibi özellikleri vardır.
+
 ## Liveness
 * Kubernetes’e uygulamanın canlı olup/olmadığının bilgisini verir.
 * Eğer Readiness Probe'u fail olursa kubernetes uygulamaya trafik yollamayı keser.
@@ -15,9 +22,9 @@ parent: Önemli Kaynaklar
 * Kubernetes'e uygulamanın ne zaman trafik almaya hazır olduğunun bilgisini verir.
 * Eğer uygulama sağlıksız ise kubernetes Pod'u siler ve Pod'un yerine yeni bir tane başlatır.
 
-## Startup
-* Herhangi bir sebeple yavaş ayağa kalkan Pod'ların başlama durumunu kontrol için Startup propları kullanılır. 
-* Startup proplarının kontrol yaptığı sürede liveness ve readiness propları çalışmaz.
+`readinessProbe` yeterli olduğunda genellikle `startupProbe` gerekli değildir. Eğer uygulama başlatıldıktan sonra hızlı bir şekilde hazır hale geliyorsa ve `readinessProbe` uygulamanın doğru bir şekilde hazır olup olmadığını belirlemekte başarılıysa, `startupProbe` eklemeye gerek yoktur. Ancak bazı durumlarda, uygulama başlatılması veya tamamen hazır hale gelmesi daha uzun sürebilir. Bu durumlarda, `startupProbe` kullanmak, uygulamanın başlatılma sürecini daha iyi kontrol etmenize ve uygulamanın tamamen hazır hale gelene kadar erken hataları tespit etmenize yardımcı olabilir. 
+
+Her durumda, uygulamanızın özelliklerine, ihtiyaçlarına ve durumuna bağlı olarak hangi probe'ların kullanılacağına ve hangi ayarların uygun olduğuna karar vermek önemlidir.
 
 
 **Probe'lar konfigüre edilebilirdirler:**
